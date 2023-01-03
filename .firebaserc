@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "clean-architecture-angular": {
+      "hosting": {
+        "clean-architecture-angular": [
+          "clean-architecture-angular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "clean-architecture-angular"
+  }
+}
