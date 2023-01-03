@@ -22,7 +22,36 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@app": [
+        "src/app"
+      ],
+      "@models/*": [
+        "src/domain/models/*"
+      ],
+      "@models": [
+        "src/domain/models"
+      ],
+      "@domain-repo/*": [
+        "src/domain/repositories/*"
+      ],
+      "@domain-repo": [
+        "src/domain/repositories"
+      ],
+      "@environment": [
+        "src/environments/environment"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@assets": [
+        "src/assets"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
