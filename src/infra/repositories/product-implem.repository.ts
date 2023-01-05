@@ -1,21 +1,17 @@
 import {ProductRepository} from "@domain-repo/product.repository";
 import {ProductEntity, ProductId} from "../../domain/entities/ProductEntity";
 import {from, map, Observable} from "rxjs";
-import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
+import {HttpClientImplem} from "../api/http-client-implem.service";
 
 export class ProductImplemRepository implements ProductRepository {
   // TODO: modifier pour faire une entity base de donnée et pas celle du domaine?
-  // TODO: Rajouter une couche d'abstraction pour firestore
-  private productsCollection: AngularFirestoreCollection<ProductEntity>;
 
-  constructor(private firestore: AngularFirestore) {
-    this.productsCollection = firestore.collection<ProductEntity>('products')
-  }
+  constructor(private httpClientImplem: HttpClientImplem) {}
 
   create(product: ProductEntity): Observable<ProductId> {
-    return from(this.productsCollection.add(product)).pipe(
+    delete product.id;
+    return from(this.httpClientImplem.post<ProductEntity>('products', product)).pipe(
       map(product => product.id)
     );
   }
-
 }

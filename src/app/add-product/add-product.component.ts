@@ -9,6 +9,7 @@ import {AddProductControllerFactory} from "../../adapters/controllers/factories/
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss'],
   providers: [
+    // TODO: voir pertinence de la factory (peut etre a cause des tests?) sinon direct instancier la classe
     {
       provide: AddProductController,
       useFactory: (controllerFactory: AddProductControllerFactory) => controllerFactory.build(),
@@ -29,6 +30,6 @@ export class AddProductComponent {
   create() {
     this.controller.create({
       name: this.productForm.value.name as ProductId, id: "newProduct"
-    })
+    }).subscribe(el => console.log(`Product with id ${el}`))
   }
 }

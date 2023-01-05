@@ -1,4 +1,4 @@
-import {InjectionToken, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -9,11 +9,10 @@ import {AddProductControllerFactory} from "../adapters/controllers/factories/add
 import {AddProductUseCase} from "../domain/usecases/add-product.use-case";
 import {ProductRepository} from "@domain-repo/product.repository";
 import {ProductImplemRepository} from "../infra/repositories/product-implem.repository";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AppRoutingModule} from "@app/app-routing.module";
+import {HttpClientImplem} from "../infra/api/http-client-implem.service";
 
-export const IProductRepository = new InjectionToken<ProductRepository>('ProductRepository');
 
 @NgModule({
   declarations: [
@@ -30,16 +29,17 @@ export const IProductRepository = new InjectionToken<ProductRepository>('Product
     AppRoutingModule,
   ],
   providers: [
+    HttpClientImplem,
     {
-      provide: IProductRepository,
-      useFactory: (firestore: AngularFirestore) => new ProductImplemRepository(firestore),
-      deps: [AngularFirestore]
+      provide: ProductImplemRepository,
+      useFactory: (httpClientImplem: HttpClientImplem) => new ProductImplemRepository(httpClientImplem),
+      deps: [HttpClientImplem]
     },
     {
       provide: AddProductUseCase,
       useFactory: (productRepository: ProductRepository) =>
         new AddProductUseCase(productRepository),
-      deps: [IProductRepository]
+      deps: [ProductImplemRepository]
     },
     {
       provide: AddProductControllerFactory,
