@@ -7,7 +7,7 @@ import {AddProductControllerFactory} from "../../adapters/controllers/factories/
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css'],
+  styleUrls: ['./add-product.component.scss'],
   providers: [
     {
       provide: AddProductController,
