@@ -7,6 +7,6 @@ export class AddProductController {
   }
 
   create(product: ProductEntity): Observable<ProductId> {
-    return this.addProductUseCase.execute(product)
+    return this.addProductUseCase.execute(product);
   }
 }

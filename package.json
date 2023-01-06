@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
+    "coverage": "jest --coverage",
     "deploy": "ng deploy --project=clean-architecture-angular",
     "prepare": "husky install",
     "lint": "ng lint"
