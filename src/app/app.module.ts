@@ -11,7 +11,7 @@ import {ProductRepository} from "@domain-repo/product.repository";
 import {ProductImplemRepository} from "../infra/repositories/product-implem.repository";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AppRoutingModule} from "@app/app-routing.module";
-import {HttpClientImplem} from "../infra/api/http-client-implem.service";
+import {ApiClientWSImplem} from "../infra/api/api-client-ws-implem.service";
 
 
 @NgModule({
@@ -29,11 +29,11 @@ import {HttpClientImplem} from "../infra/api/http-client-implem.service";
     AppRoutingModule,
   ],
   providers: [
-    HttpClientImplem,
+    ApiClientWSImplem,
     {
       provide: ProductImplemRepository,
-      useFactory: (httpClientImplem: HttpClientImplem) => new ProductImplemRepository(httpClientImplem),
-      deps: [HttpClientImplem]
+      useFactory: (httpClientImplem: ApiClientWSImplem) => new ProductImplemRepository(httpClientImplem),
+      deps: [ApiClientWSImplem]
     },
     {
       provide: AddProductUseCase,
