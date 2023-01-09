@@ -32,7 +32,7 @@ import {ApiClientWSImplem} from "../infra/api/api-client-ws-implem.service";
     ApiClientWSImplem,
     {
       provide: ProductImplemRepository,
-      useFactory: (httpClientImplem: ApiClientWSImplem) => new ProductImplemRepository(httpClientImplem),
+      useFactory: (apiClientWSImplem: ApiClientWSImplem) => new ProductImplemRepository(apiClientWSImplem),
       deps: [ApiClientWSImplem]
     },
     {

@@ -13,7 +13,7 @@ const newProduct: ProductEntity = {
 function init() {
   const repo = new ProductImplemRepository({
     add(): Observable<any> {
-      return of({id: newProductId})
+      return of(newProductId)
     }
   });
   const useCase = new AddProductUseCase(repo);
